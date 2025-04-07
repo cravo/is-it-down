@@ -1,0 +1,9 @@
+services:
+  is-it-down:
+    image: docker.cravo.cloud/isitdown:latest
+    container_name: is-it-down
+    restart: always
+    ports:
+      - "3000:3000"  # Internal port used by the app
+    volumes:
+      - ./isitdown-logs:/usr/src/app/logs  # Mount local folder to container log path
