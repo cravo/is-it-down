@@ -1,0 +1,150 @@
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #121212;
+    margin: 0;
+    text-align: center;
+    color: #e0e0e0;
+    min-height: 100vh;
+}
+
+/* Main container */
+.container {
+    background: #1e1e1e;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 400px;
+}
+
+/* Password display wrapper */
+.wrapper {
+    display: flex;
+    align-items: center; /* Keep items aligned */
+    justify-content: space-between; /* Keep password centered and copy icon on the right */
+    background: #2a2a2a;
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 20px auto;
+    border-radius: 5px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    position: relative;
+    width: 100%;
+    max-width: 100%; /* Ensures it doesn't exceed container */
+    overflow: hidden;
+}
+
+/* Password text area */
+input[type="text"] {
+    flex: 1;
+    min-width: 0; /* Prevents flexbox from forcing expansion */
+    max-width: 100%; /* Ensures it stays within boundaries */
+    text-align: center; /* Keeps the password centered */
+    padding-right: 10px; /* Space before the copy icon */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background: #2a2a2a;
+    border: none;
+    color: #00bcd4;
+    font-size: 1.4rem;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+button {
+    background: #00bcd4;
+    color: #2a2a2a;
+    font-size: 1rem;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+    width: 100%;
+}
+
+button:hover {
+    background: #0097a7;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #1e1e1e;
+    color: #bbbbbb;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+
+a {
+    color: #00bcd4;
+}
+
+a.visited {
+    color: #00bcd4;
+}
+
+   
+/* input[type="text"] {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #3a3a4f;
+    color: #f0f0f5;
+} */
+   
+p#result {
+    margin-top: 1rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Status classes */
+.up {
+    color: #66ff66;
+}
+
+.down {
+    color: #ff6666;
+}
+
+.error {
+    color: #ffcc66;
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    input[type="text"],
+    button {
+        font-size: 0.95rem;
+    }
+}
+  

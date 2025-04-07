@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Is It Down?</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+      <h1>Is It Down?</h1>
+      <div class="wrapper">
+        <input type="text" id="url" placeholder="Enter URL (e.g. https://example.com)">
+      </div>
+      <button onclick="checkSite()">Check</button>
+      <p id="result">_</p>
+  </div>
+
+  <footer>
+    Copyright © 2025 cravo. Source at <a href="https://github.com/cravo/is-it-down">GitHub</a>
+  </footer>
+
+  <script>
+    async function checkSite() {
+      const url = document.getElementById('url').value;
+      const result = document.getElementById('result');
+      result.textContent = "Checking...";
+      
+      try {
+        const res = await fetch(`/check?url=${encodeURIComponent(url)}`);
+        const data = await res.json();
+        if (data.status === 'up') {
+          result.textContent = 'It’s up!';
+          result.className = 'up';
+        } else {
+          result.textContent = 'It’s down!';
+          result.className = 'down';
+        }
+      } catch (err) {
+        result.textContent = 'Error contacting the server.';
+        result.className = 'error';
+      }
+    }
+  </script>
+</body>
+</html>
