@@ -10,9 +10,16 @@
   <div class="container">
       <h1>Is It Down?</h1>
       <div class="wrapper">
-        <input type="text" id="url" placeholder="Enter URL (e.g. https://example.com)">
+        <input type="text" 
+               id="url" 
+               placeholder="Enter URL (e.g. https://example.com)"
+               onkeydown="handleKey(event)">
       </div>
-      <button onclick="checkSite()">Check</button>
+      <button id="checkBtn" 
+              onclick="checkSite()">
+                Check
+      </button>
+      <div id="spinner" class="spinner" hidden></div>
       <p id="result">_</p>
   </div>
 
@@ -21,10 +28,24 @@
   </footer>
 
   <script>
+
+    window.onload = () => {
+      document.getElementById('url').focus();
+    }
+
     async function checkSite() {
-      const url = document.getElementById('url').value;
       const result = document.getElementById('result');
-      result.textContent = "Checking...";
+      const spinner = document.getElementById('spinner');
+      const button = document.getElementById('checkBtn');
+      const urlInput = document.getElementById('url');
+      const url = urlInput.value;
+
+            // Reset UI
+      result.textContent = "";
+      result.className = "";
+      spinner.hidden = false;
+      urlInput.disabled = true;
+      button.disabled = true;
       
       try {
         const res = await fetch(`/check?url=${encodeURIComponent(url)}`);
@@ -33,12 +54,23 @@
           result.textContent = 'It’s up!';
           result.className = 'up';
         } else {
-          result.textContent = 'It’s down!';
+          result.textContent = 'It’s down! ' + data.reason;
           result.className = 'down';
         }
       } catch (err) {
         result.textContent = 'Error contacting the server.';
         result.className = 'error';
+      } finally {
+        spinner.hidden = true;
+        urlInput.disabled = false;
+        button.disabled = false;
+        urlInput.focus();
+      }
+    }
+
+    function handleKey(event) {
+      if(event.key === 'Enter') {
+        checkSite();
       }
     }
   </script>
